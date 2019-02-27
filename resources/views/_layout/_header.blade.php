@@ -12,6 +12,9 @@
             </li>
             @auth
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('post.create') }}">{{ __("Publish") }}</a>
+                </li>
+                <li class="nav-item">
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         

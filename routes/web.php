@@ -16,7 +16,6 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth'], function() {
-    Route::get('/test', function() {
-        dd('This is a restricted area');
-    });
+    Route::get('/post/create', 'PostController@create')->name('post.create');
+    Route::post('/post/create', 'PostController@store');
 });
