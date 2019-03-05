@@ -18,7 +18,7 @@ Create an empty database for your application in phpmyadmin
 
 - Duplicate the `.env.example` file and rename it to `.env`
 
-- Then fill out your environment information especially the part about database connection
+- Fill out the informations based on your environment especially the part about database connection
 
 - Generate a new application key with the following command
 
@@ -36,7 +36,7 @@ php artisan migrate --seed
 
 ## Step 5
 
-Create a virtualhost for your application in your apache `httpd-vhosts.conf` file.
+Create a virtualhost for your application in your apache `httpd-vhosts.conf` file
 
 Example vhost config
 
