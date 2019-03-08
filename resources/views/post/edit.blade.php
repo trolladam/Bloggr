@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="card w-75 mt-5 mx-auto">
-        <div class="card-header">{{ __('Publish post') }}</div>
+        <div class="card-header">{{ __('Edit post') }}</div>
         <div class="card-body">
-            <form action="{{ route('post.create') }}" method="POST">
+            <form action="{{ route('post.edit', ['post' => $post]) }}" method="POST">
                 @csrf
 
                 <div class="form-group">
@@ -13,7 +13,7 @@
                         class="form-control{{ $errors->has('post.title') ? ' is-invalid' : '' }}"
                         type="text"
                         name="post[title]"
-                        value="{{ old('post.title') }}">
+                        value="{{ old('post.title', $post->title) }}">
                     @if ($errors->has('post.title'))
                     <span class="invalid-feedback" role="alert">
                         {{ $errors->first('post.title') }}
@@ -26,7 +26,7 @@
                     <select class="form-control{{ $errors->has('post.topic_id') ? ' is-invalid' : '' }}" name="post[topic_id]">
                         <option>{{ __("Select your topic") }}</option>
                         @foreach ($topics as $topic)
-                            <option value="{{ $topic->id }}" {{ $topic->id == old('post.topic_id') ? 'selected' : '' }}>{{ $topic->title }}</option>
+                            <option value="{{ $topic->id }}" {{ $topic->id == old('post.topic_id', $post->topic_id) ? 'selected' : '' }}>{{ $topic->title }}</option>
                         @endforeach
                     </select>
                     @if ($errors->has('post.topic_id'))
@@ -38,7 +38,7 @@
 
                 <div class="form-group">
                     <label for="post[description]">{{ __('Description') }}</label>
-                    <textarea class="form-control{{ $errors->has('post.description') ? ' is-invalid' : '' }}" name="post[description]">{{ old('post.description') }}</textarea>
+                    <textarea class="form-control{{ $errors->has('post.description') ? ' is-invalid' : '' }}" name="post[description]">{{ old('post.description', $post->description) }}</textarea>
                     @if ($errors->has('post.description'))
                     <span class="invalid-feedback" role="alert">
                         {{ $errors->first('post.description') }}
@@ -48,7 +48,7 @@
 
                 <div class="form-group">
                     <label for="post[content]">{{ __('Content') }}</label>
-                    <textarea class="form-control{{ $errors->has('post.content') ? ' is-invalid' : '' }}" name="post[content]">{{ old('post.content') }}</textarea>
+                    <textarea class="form-control{{ $errors->has('post.content') ? ' is-invalid' : '' }}" name="post[content]">{{ old('post.content', $post->content) }}</textarea>
                     @if ($errors->has('post.content'))
                     <span class="invalid-feedback" role="alert">
                         {{ $errors->first('post.content') }}

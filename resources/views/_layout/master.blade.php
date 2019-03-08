@@ -10,10 +10,8 @@
 </head>
 <body>
     @include('_layout._header')
-    <div class="sidebar">
-        @yield('sidebar')
-    </div>
     <main class="container">
+        @include('_layout.alerts._success')
         @yield('content')
     </main>
     
