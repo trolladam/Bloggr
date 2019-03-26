@@ -1,5 +1,24 @@
 @extends('_layout.master')
 
+@push('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
+
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+
+        var myDropzone = new Dropzone("#post-image", { url: "#" });
+    </script>
+@endpush
+
+@push('styles')
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css">
+@endpush
+
 @section('content')
     <div class="card w-75 mt-5 mx-auto">
         <div class="card-header">{{ __('Edit post') }}</div>
@@ -48,7 +67,7 @@
 
                 <div class="form-group">
                     <label for="post[content]">{{ __('Content') }}</label>
-                    <textarea class="form-control{{ $errors->has('post.content') ? ' is-invalid' : '' }}" name="post[content]">{{ old('post.content', $post->content) }}</textarea>
+                    <textarea id="editor" class="form-control{{ $errors->has('post.content') ? ' is-invalid' : '' }}" name="post[content]">{{ old('post.content', $post->content) }}</textarea>
                     @if ($errors->has('post.content'))
                     <span class="invalid-feedback" role="alert">
                         {{ $errors->first('post.content') }}
@@ -57,9 +76,19 @@
                 </div>
 
                 <div class="form-group text-right">
-                    <button class="btn btn-primary" type="submit">{{ __('Publish') }}</button>
+                    <button class="btn btn-primary" type="submit">{{ __('Save') }}</button>
                 </div>
 
+            </form>
+        </div>
+    </div>
+    <div class="card w-75 mt-5 mx-auto">
+        <div class="card-header">{{ __('Upload image') }}</div>
+        <div class="card-body">
+            <form action="#" class="dropzone" id="post-image">
+                <div class="fallback">
+                    <input name="file" type="file" multiple />
+                </div>
             </form>
         </div>
     </div>

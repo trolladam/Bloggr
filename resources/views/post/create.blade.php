@@ -1,5 +1,16 @@
 @extends('_layout.master')
 
+@push('scripts')
+    <script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+@endpush
+
 @section('content')
     <div class="card w-75 mt-5 mx-auto">
         <div class="card-header">{{ __('Publish post') }}</div>
@@ -48,7 +59,7 @@
 
                 <div class="form-group">
                     <label for="post[content]">{{ __('Content') }}</label>
-                    <textarea class="form-control{{ $errors->has('post.content') ? ' is-invalid' : '' }}" name="post[content]">{{ old('post.content') }}</textarea>
+                    <textarea id="editor" class="form-control{{ $errors->has('post.content') ? ' is-invalid' : '' }}" name="post[content]">{{ old('post.content') }}</textarea>
                     @if ($errors->has('post.content'))
                     <span class="invalid-feedback" role="alert">
                         {{ $errors->first('post.content') }}

@@ -42,4 +42,16 @@ class User extends Authenticatable
     function posts() {
         return $this->hasMany(Post::class);
     }
+
+
+    function getFullnameAttribute()
+    {
+        return "{$this->firstname} {$this->lastname}";
+    }
+
+    function getAvatarAttribute()
+    {
+        $avatar_id = md5($this->email);
+        return "https://www.gravatar.com/avatar/{$avatar_id}";
+    }
 }

@@ -9,6 +9,10 @@ use App\Http\Requests\PostRequest;
 
 class PostController extends Controller {
 
+    public function show(Post $post) {
+        return view('post.show')->with(compact('post'));
+    }
+
     public function create() {
         $topics = Topic::all();
         
@@ -30,6 +34,15 @@ class PostController extends Controller {
         $topics = Topic::all();
 
         return view('post.edit')->with(compact('post', 'topics'));
+    }
+
+    public function update(Post $post, PostRequest $request)
+    {
+        $post->update($request->post);
+
+        return redirect()
+            ->route('post.edit', ['post' => $post])
+            ->with('success', __('Post saved successfully'));
     }
 
 }

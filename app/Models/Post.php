@@ -4,9 +4,12 @@ namespace App\Models;
 
 use App\User;
 use Illuminate\Database\Eloquent\Model;
+use LevooLabs\Imageable\Traits\SingleImageableTrait;
 
 class Post extends Model
 {
+    use SingleImageableTrait;
+
     protected $fillable = [
         'title', 'topic_id',
         'description', 'content',
