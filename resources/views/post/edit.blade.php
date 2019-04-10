@@ -10,8 +10,13 @@
             .catch(error => {
                 console.error(error);
             });
-
-        var myDropzone = new Dropzone("#post-image", { url: "#" });
+        
+        Dropzone.autoDiscover = false;
+        var myDropzone = new Dropzone("#post-image",{ 
+            headers: {
+                'x-csrf-token': csrf_token,
+            },
+        });
     </script>
 @endpush
 
@@ -85,7 +90,14 @@
     <div class="card w-75 mt-5 mx-auto">
         <div class="card-header">{{ __('Upload image') }}</div>
         <div class="card-body">
-            <form action="#" class="dropzone" id="post-image">
+            @if ($post->has_image)
+                <form action="{{ route('post.delete-image', ['post' => $post]) }}" method="POST">
+                    @csrf
+                    <img height="100" src="{{ $post->image->s }}" alt="image">
+                    <button class="btn btn-danger" type="submit">Delete image</button>
+                </form>
+            @endif
+            <form action="{{ route('post.upload-image', ['post' => $post]) }}" class="dropzone" id="post-image" method="POST">
                 <div class="fallback">
                     <input name="file" type="file" multiple />
                 </div>

@@ -27,4 +27,8 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('/post/{post}/edit', 'PostController@edit')->name('post.edit');
     Route::post('/post/{post}/edit', 'PostController@update');
+
+    Route::post('/post/{post}/upload-image', 'PostController@uploadImage')->name('post.upload-image');
+    
+    Route::post('/post/{post}/delete-image', 'PostController@deleteImage')->name('post.delete-image');
 });
