@@ -20,6 +20,7 @@
         </span>
         <span>{{__('In:')}} {{ $post->topic->title }}</span>
         <span>{{ $post->created_at->diffForHumans() }}</span>
+        <span>{{__('Comments:')}} {{ $post->comments()->count() }}</span>
     </p>
     <hr>
 </article>

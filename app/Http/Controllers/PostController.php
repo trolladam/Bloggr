@@ -80,4 +80,14 @@ class PostController extends Controller {
             ->route('post.edit', ['post' => $post])
             ->with('success', __('Post image deleted successfully'));
     }
+
+    function comment(Post $post, Request $request)
+    {
+        $post->comments()->create([
+            'user_id' => Auth::user()->id,
+            'body' => $request->comment,
+        ]);
+
+        return back()->with('success', __('Comment saved successfully'));
+    }
 }

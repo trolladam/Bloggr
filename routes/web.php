@@ -22,6 +22,8 @@ Route::get('/post/{post}', 'PostController@show')->name('post.show');
 Route::get('/profile/{user}', 'ProfileController@show')->name('profile.show');
 
 Route::group(['middleware' => 'auth'], function() {
+    Route::post('/profile/{user}/comment', 'ProfileController@comment')->name('profile.comment');
+
     Route::get('/post/create', 'PostController@create')->name('post.create');
     Route::post('/post/create', 'PostController@store');
 
@@ -29,6 +31,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/post/{post}/edit', 'PostController@update');
 
     Route::post('/post/{post}/upload-image', 'PostController@uploadImage')->name('post.upload-image');
-    
     Route::post('/post/{post}/delete-image', 'PostController@deleteImage')->name('post.delete-image');
+
+    Route::post('/post/{post}/comment', 'PostController@comment')->name('post.comment');
 });

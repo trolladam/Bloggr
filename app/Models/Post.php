@@ -16,10 +16,16 @@ class Post extends Model
     ];
 
     function topic() {
-        return $this->belongsTo(Topic::class); 
+        return $this->belongsTo(Topic::class);
     }
 
     function user() {
         return $this->belongsTo(User::class);
+    }
+
+    function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable')
+            ->orderBy('created_at', 'desc');
     }
 }

@@ -27,5 +27,21 @@
     <div>
         {!! $post->content !!}
     </div>
+    <hr>
+    <div>
+        <form action="{{ route('post.comment', ['post' => $post]) }}" method="POST">
+            @csrf
+            <div class="form-group">
+                <textarea class="form-control" name="comment" placeholder="{{ __('Comment text...') }}"></textarea>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">Comment</button>
+            </div>
+        </form>
+        <p>Comments:</p>
+        @foreach ($post->comments as $comment)
+            @include('comment._item')
+        @endforeach
+    </div>
 </div>
 @endsection

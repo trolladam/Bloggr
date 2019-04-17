@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Models\Post;
+use App\Models\Comment;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -43,6 +44,15 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
+    function published_comments() {
+        return $this->hasMany(Comment::class);
+    }
+
+    function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable')
+            ->orderBy('created_at', 'desc');
+    }
 
     function getFullnameAttribute()
     {
