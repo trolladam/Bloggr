@@ -28,4 +28,12 @@ class Post extends Model
         return $this->morphMany(Comment::class, 'commentable')
             ->orderBy('created_at', 'desc');
     }
+
+    function getMinutesToReadAttribute() 
+    {
+        $wordsPerMinute = 200;
+        $noOfWords = count(explode(" ", strip_tags($this->content)));
+        $readTime = ceil($noOfWords / $wordsPerMinute);
+        return "${readTime} mins to read";
+    }
 }

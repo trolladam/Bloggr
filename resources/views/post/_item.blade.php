@@ -21,6 +21,8 @@
         <span>{{__('In:')}} {{ $post->topic->title }}</span>
         <span>{{ $post->created_at->diffForHumans() }}</span>
         <span>{{__('Comments:')}} {{ $post->comments()->count() }}</span>
+        |
+        <span>{{ $post->minutes_to_read }}</span>
     </p>
     <hr>
 </article>

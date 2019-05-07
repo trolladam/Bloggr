@@ -12,6 +12,26 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
     @stack('styles')
+    <style>
+        .comment .replies form {
+            display: none;
+        }
+        .comment.replying .replies form {
+            display: block;
+        }
+
+
+        .comment .reply-btn .text-cancel {
+            display: none;
+        }
+
+        .comment.replying .reply-btn .text-cancel {
+            display: inline;
+        }
+        .comment.replying .reply-btn .text-reply {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     @include('_layout._header')
@@ -27,6 +47,7 @@
         var csrf_token = "{{ csrf_token() }}";
     </script>
 
+    <script src="{{ asset('/js/comment.js') }}"></script>
     @stack('scripts')
 </body>
 </html>
