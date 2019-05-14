@@ -15,13 +15,11 @@
         </span>
         <span>{{ __('In:') }} {{ $post->topic->title }}</span>
         <span>{{ $post->created_at->diffForHumans() }}</span>
-        @auth
-            @if (Auth::user() == $post->user)
+        @can('update', $post)
             <span>
                 <a href="{{ route('post.edit', ['post' => $post]) }}">Edit</a>
             </span>
-            @endif
-        @endauth
+        @endcan
     </p>
     <p>{{ $post->description }}</p>
     <div>

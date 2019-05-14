@@ -11,6 +11,7 @@
                     {{ __("No posts to show.") }}
                 </div>
             @endforelse
+            {{ $posts->links('_layout.pagination.bs4') }}
         </div>
     </div>
 </div>

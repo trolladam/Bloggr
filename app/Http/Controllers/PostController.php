@@ -11,6 +11,10 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller {
 
+    function __construct() {
+        $this->authorizeResource(Post::class, 'post');
+    }
+
     public function show(Post $post) {
         return view('post.show')->with(compact('post'));
     }
@@ -33,10 +37,6 @@ class PostController extends Controller {
 
     public function edit(Post $post)
     {
-        if ($post->user != Auth::user()) {
-            abort(403);
-        }
-
         $topics = Topic::all();
 
         return view('post.edit')->with(compact('post', 'topics'));
@@ -44,10 +44,6 @@ class PostController extends Controller {
 
     public function update(Post $post, PostRequest $request)
     {
-        if ($post->user != Auth::user()) {
-            abort(403);
-        }
-
         $post->update($request->post);
 
         return redirect()
@@ -57,10 +53,6 @@ class PostController extends Controller {
 
     function uploadImage(Post $post, Request $request)
     {
-        if ($post->user != Auth::user()) {
-            abort(403);
-        }
-
         if ($request->ajax()) {
             $image = $post->store_image($request->file('file'));
             return response()->json(['ok' => $image->id], 200);
@@ -71,10 +63,6 @@ class PostController extends Controller {
 
     function deleteImage(Post $post)
     {
-        if ($post->user != Auth::user()) {
-            abort(403);
-        }
-
         $post->delete_image();
         return redirect()
             ->route('post.edit', ['post' => $post])
@@ -89,5 +77,13 @@ class PostController extends Controller {
         ]);
 
         return back()->with('success', __('Comment saved successfully'));
+    }
+
+    protected function resourceAbilityMap()
+    {
+        $abilityMap = parent::resourceAbilityMap();
+        $abilityMap['uploadImage'] = 'update';
+        $abilityMap['deleteImage'] = 'update';
+        return $abilityMap;
     }
 }
