@@ -1,0 +1,45 @@
+.comment {
+    .comment-meta {
+        margin-bottom: 1rem;
+        .avatar {
+            height: 40px;
+        }
+        .info {
+            .user {
+                color: inherit;
+            }
+            p {
+                font-size: .8rem;
+                margin-bottom: 0.3rem;
+                &:nth-child(2) {
+                    color: $light-grey;
+                }
+            }
+        }
+    }
+    .replies {
+        form {
+            display: none;
+        }
+    }
+    .reply-btn {
+        .text-cancel {
+            display: none;
+        }
+    }
+    &.replying {
+        .replies {
+            form {
+                display: block;
+            }
+        }
+        .reply-btn {
+            .text-cancel {
+                display: inline;
+            }
+            .text-reply {
+                display: none;
+            }
+        }
+    }
+}

@@ -1,0 +1,47 @@
+.navbar {
+    box-shadow: 0 4px 12px 0 rgba(0,0,0,.05);
+    .navbar-brand {
+        font-weight: 900;
+        font-size: 1.4rem;
+        font-family: $font-family-serif;
+    }
+    .avatar {
+        @include media-breakpoint-up(lg) { 
+            padding: 0;
+        }
+        img {
+            height: 2.2rem;
+        }
+    }
+    @include media-breakpoint-up(lg) {
+        .nav-item {
+            margin-left: 1rem;
+        }
+    }
+}
+
+body {
+    padding-top: 100px;
+}
+
+.card {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 35px;
+}
+
+
+.container {
+    @include media-breakpoint-up(lg) {
+        .container-sm {
+            margin: 0 auto;
+            max-width: 620px;
+        }
+    }
+    @include media-breakpoint-up(xl) {
+        .container-sm {
+            margin: 0 auto;
+            max-width: 760px;
+        }
+    }
+}
+  

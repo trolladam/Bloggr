@@ -1,9 +1,12 @@
 
 // Body
-$body-bg: #f8fafc;
+$white: white;
+$body-bg: $white;
 
 // Typography
-$font-family-sans-serif: "Nunito", sans-serif;
+$font-family-sans-serif: 'Roboto', sans-serif;
+$font-family-serif: 'Playfair Display', serif;
+
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
@@ -18,3 +21,9 @@ $yellow: #ffed4a;
 $green: #38c172;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
+
+$black: #1a1a1a;
+$light-grey: #7b7b7b;
+
+$border-radius: 0.25rem;
+

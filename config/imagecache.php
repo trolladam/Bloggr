@@ -55,6 +55,11 @@ return array(
         'small' => 'Intervention\Image\Templates\Small',
         'medium' => 'Intervention\Image\Templates\Medium',
         'large' => 'Intervention\Image\Templates\Large',
+
+        'post' => \App\ImageFilters\Post\Upload::class,
+        'post-s' => \App\ImageFilters\Post\Small::class,
+        'post-m' => \App\ImageFilters\Post\Medium::class,
+        'post-l' => \App\ImageFilters\Post\Large::class,
     ),
 
     /*

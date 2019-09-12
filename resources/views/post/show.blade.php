@@ -7,39 +7,32 @@
 
 @section('content')
 <div class="post post-show">
-    <h1>{{ $post->title }}</h1>
-    <p>
-        <span>
-            {{ __('Created by:') }}
-            <a href="{{ route('profile.show', ['user' => $post->user]) }}">{{ $post->user->fullname }}</a>
-        </span>
-        <span>{{ __('In:') }} {{ $post->topic->title }}</span>
-        <span>{{ $post->created_at->diffForHumans() }}</span>
-        @can('update', $post)
-            <span>
-                <a href="{{ route('post.edit', ['post' => $post]) }}">Edit</a>
-            </span>
-        @endcan
-    </p>
-    <p>{{ $post->description }}</p>
-    <div>
+    <div class="container-sm">
+        <h1 class="post-title">{{ $post->title }}</h1>
+        <h2 class="post-subtitle mb-4">{{ $post->description }}</h2>
+        @include('post._meta')
+    </div>
+    <img class="img-fluid mb-4" src="{{ $post->image->l }}" alt="{{ $post->title }}">
+    <div class="container-sm mb-5">
         {!! $post->content !!}
     </div>
-    <hr>
     <div>
-        <form action="{{ route('post.comment', ['post' => $post]) }}" method="POST">
-            @csrf
-            <div class="form-group">
-                <textarea class="form-control" name="comment" placeholder="{{ __('Comment text...') }}"></textarea>
-            </div>
-            <div class="form-group">
-                <button class="btn btn-primary" type="submit">Comment</button>
-            </div>
-        </form>
-        <p>Comments:</p>
-        @foreach ($post->comments as $comment)
-            @include('comment._item')
-        @endforeach
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5 mx-auto">
+            <p>{{ __("Responses") }}</p>
+            <form class="mb-4" action="{{ route('post.comment', ['post' => $post]) }}" method="POST">
+                @csrf
+                <div class="form-group">
+                    <textarea class="form-control" name="comment" placeholder="{{ __('Comment text...') }}"></textarea>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-block" type="submit">Comment</button>
+                </div>
+            </form>
+            
+            @foreach ($post->comments as $comment)
+                @include('comment._item')
+            @endforeach
+        </div>
     </div>
 </div>
 @endsection

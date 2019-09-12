@@ -10,6 +10,8 @@ class Post extends Model
 {
     use SingleImageableTrait;
 
+    public $template_base_name = "post";
+    
     protected $fillable = [
         'title', 'topic_id',
         'description', 'content',

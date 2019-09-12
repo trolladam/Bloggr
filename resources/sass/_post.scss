@@ -1,0 +1,48 @@
+.post {
+    .post-title {
+        color: $black;
+        font-size: 2rem;
+        font-weight: 900;
+        a {
+            color: inherit;
+        }
+    }
+    .post-subtitle {
+        font-size: 1.5rem;
+        color: $light-grey;
+    }
+    .post-thumbnail {
+        margin-bottom: 1rem;
+    }
+    .post-meta {
+        margin-bottom: 1rem;
+        .avatar {
+            height: 50px;
+        }
+        .follow {
+            padding-top: 0.125rem;
+            padding-bottom: 0.125rem;
+        }
+        .info {
+            .user {
+                color: inherit;
+            }
+            p {
+                font-size: .8rem;
+                margin-bottom: 0.3rem;
+                &:nth-child(2) {
+                    color: $light-grey;
+                }
+            }
+        }
+        .topic {
+            font-weight: bold;
+        }
+    }
+    &.post-show {
+        .post-title {
+            font-size: 2.4rem;
+            font-family: $font-family-serif;
+        }
+    }
+}
